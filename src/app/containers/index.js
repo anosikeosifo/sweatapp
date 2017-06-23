@@ -1,2 +1,4 @@
-export { NewWorkout } from './NewWorkout';
+import NewWorkout from './NewWorkout';
+
+export { NewWorkout };
 export { Welcome } from './Welcome';

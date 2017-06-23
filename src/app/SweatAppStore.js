@@ -1,9 +1,9 @@
-import { combineReducers, createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { userData } from './UserReducer';
+import { rootReducer } from './reducers/RootReducer';
 
 const sweatAppStore = createStore(
-  combineReducers({ userData }),
+  rootReducer,
   applyMiddleware(thunk),
 );
 

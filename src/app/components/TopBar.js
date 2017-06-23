@@ -9,8 +9,6 @@ export const TopBar = (props) => (
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 20,
-    paddingBottom: 10,
     height: 50,
     borderBottomWidth: 1,
     borderBottomColor: 'white'
