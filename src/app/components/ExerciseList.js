@@ -1,20 +1,29 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import Button from 'apsl-react-native-button';
+import React, { Component } from 'react';
+import { View, StyleSheet, ListView, Text } from 'react-native';
 
-export const WorkoutList = (props) => {
+export class ExerciseList extends Component {
+  constructor(props) {
+    super(props);
+    const listDataSource = new ListView.DataSource({ rowHasChanged: (r1,r2) => r1 != r2 });
 
-  //access the list of workouts from props
-  return (
-    <View style={ styles.container }>
-      <Text style={ styles.text }>{ "Add a new exercise" }</Text>
-      <Button style={ styles.addExerciseBtn }
-        onPress={ this.props.addNewExercise }>
-        <Icon svgPath={ ADD_ICON } />
-      </Button>
-    </View>
-  );
+    this.state = {
+      dataSource: listDataSource.cloneWithRows(props.exercises)
+    }
+  }
+
+  render() {
+    return (
+      <ListView
+       dataSource={ this.state.dataSource }
+       renderRow={ (exercise) => (
+         <View>
+          <Text>{ exercise.name }</Text>
+         </View>
+       )}/>
+    );
+  }
 }
+  //access the list of workouts from props
 
 const styles = StyleSheet.create({
   container: {

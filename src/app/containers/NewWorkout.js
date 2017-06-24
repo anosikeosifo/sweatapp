@@ -13,6 +13,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => {
   return {
     exerciseModalVisibility: state.exerciseData.showModal,
+    exerciseList: state.exerciseData.exercises,
   }
 };
 
@@ -26,7 +27,10 @@ class NewWorkout extends Component {
 
         <View style={ styles.workoutListContainer }>
           <WorkoutList showExerciseModal={ this.props.openExerciseModal }/>
-          <NewExerciseModal visible={ this.props.exerciseModalVisibility } closeModal={ this.props.closeExerciseModal } />
+          <NewExerciseModal
+            visible={ this.props.exerciseModalVisibility }
+            closeModal={ this.props.closeExerciseModal }
+            exerciseListData={ this.props.exerciseList } />
         </View>
       </View>
     );

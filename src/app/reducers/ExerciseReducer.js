@@ -1,7 +1,14 @@
 import { EXERCISE_ACTIONS } from '../utilities/constants';
 import update from 'immutability-helper';
 
-const defaultState = { showModal: false };
+const defaultState = {
+  showModal: false,
+  exercises: [
+    {name: 'test1'},
+    {name: 'test2'},
+    {name: 'test2'},
+  ],
+};
 
 export const exerciseData = (state=defaultState, action) => {
   switch(action.type) {
