@@ -3,21 +3,31 @@ import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { TopBar } from '../components';
 import { WorkoutList, NewExerciseModal } from '../components';
-import { toggleExerciseModal } from '../actions/ExerciseActionCreators';
+import { toggleExerciseModal, loadExercises } from '../actions/ExerciseActionCreators';
+import { loadWorkouts, addWorkout } from '../actions/WorkoutActionCreators';
 
 const mapDispatchToProps = (dispatch) => ({
   closeExerciseModal: () => dispatch(toggleExerciseModal(false)),
   openExerciseModal: () => dispatch(toggleExerciseModal(true)),
+  addExerciseToWorkout: (name) => dispatch(addWorkout(name)),
+  fetchExerciseList: () => dispatch(loadExercises()),
+  fetchWorkoutList: () => dispatch(loadWorkouts())
 });
 
 const mapStateToProps = (state) => {
   return {
     exerciseModalVisibility: state.exerciseData.showModal,
     exerciseList: state.exerciseData.exercises,
+    workoutList: state.workoutData.workouts,
   }
 };
 
 class NewWorkout extends Component {
+  componentDidMount() {
+    this.props.fetchWorkoutList();
+    this.props.fetchExerciseList();
+  }
+  
   render() {
     return(
       <View style={ styles.container }>
@@ -26,11 +36,12 @@ class NewWorkout extends Component {
         </TopBar>
 
         <View style={ styles.workoutListContainer }>
-          <WorkoutList showExerciseModal={ this.props.openExerciseModal }/>
+          <WorkoutList showExerciseModal={ this.props.openExerciseModal } workouts={ this.props.workoutList }/>
           <NewExerciseModal
             visible={ this.props.exerciseModalVisibility }
             closeModal={ this.props.closeExerciseModal }
-            exerciseListData={ this.props.exerciseList } />
+            exerciseListData={ this.props.exerciseList }
+            addExercise={ this.props.addExerciseToWorkout } />
         </View>
       </View>
     );

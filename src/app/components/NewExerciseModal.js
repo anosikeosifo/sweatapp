@@ -6,8 +6,20 @@ import {TopBar} from './TopBar';
 import { SearchBar } from './SearchBar';
 
 export class NewExerciseModal extends Component {
-  handleSearchInput() {
+  constructor() {
+    super();
+    this.state = {
+      searchTerm: "Search for exercises"
+    }
+  }
 
+  handleSearchInput(inputValue) {
+    this.setState({ searchTerm: inputValue });
+  }
+
+  handleAddExercise(name) {
+    this.props.addExercise(name);
+    this.props.closeModal();
   }
 
   render() {
@@ -21,14 +33,14 @@ export class NewExerciseModal extends Component {
         <View>
           <TopBar style={ styles.topBar }>
             <View style={styles.container}>
-              <SearchBar style={ styles.searchBar } onTextInput={ this.handleSearchInput.bind } />
+              <SearchBar searchTerm={ this.state.searchTerm } style={ styles.searchBar } onTextInput={ this.handleSearchInput.bind(this) } />
               <TouchableOpacity onPress={ this.props.closeModal } style={ styles.closeModalTrigger }>
                 <Text style={ styles.closeModalTriggerIcon }>x</Text>
               </TouchableOpacity>
             </View>
           </TopBar>
 
-          <ExerciseList exercises={ this.props.exerciseListData }/>
+          <ExerciseList exercises={ this.props.exerciseListData } handleItemSelect={ this.handleAddExercise.bind(this) }/>
         </View>
       </Modal>
     );
