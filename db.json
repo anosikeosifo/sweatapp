@@ -1,0 +1,38 @@
+{
+  "exercises": [
+    {
+      "id": 1,
+      "name": "Dumbell lifting"
+    },
+    {
+      "id": 2,
+      "name": "Push-ups"
+    },
+    {
+      "id": 3,
+      "name": "Sit-ups"
+    },
+    {
+      "id": 4,
+      "name": "Skipping"
+    }
+  ],
+  "workouts": [
+    {
+      "id": 1,
+      "name": "Dumbell Stretch"
+    },
+    {
+      "name": "Skipping",
+      "id": 2
+    },
+    {
+      "name": "Dumbell lifting",
+      "id": 3
+    },
+    {
+      "name": "Dumbell lifting",
+      "id": 4
+    }
+  ]
+}
